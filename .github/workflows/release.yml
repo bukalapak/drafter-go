@@ -38,11 +38,13 @@ jobs:
       - run: make plugin
       - id: get_upload_url
         run: echo ::set-output name=upload_url::$(cat release_url.txt)
+      - id: get_version
+        run: echo ::set-output name=version::${github.ref/refs\/tags\//}
       - uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.get_upload_url.outputs.upload_url }}
           asset_path: ./drafter.so
-          asset_name: drafter-${{ github.ref }}-${{ matrix.os }}.so
+          asset_name: drafter-${{ steps.get_version.outputs.version }}-${{ runner.os }}.so
           asset_content_type: application/octet-stream
