@@ -39,7 +39,7 @@ jobs:
       - id: get_upload_url
         run: echo ::set-output name=upload_url::$(cat release_url.txt)
       - id: get_version
-        run: echo ::set-output name=version::${github.ref/refs\/tags\//}
+        run: echo ::set-output name=version::$(echo ${{ github.ref }} | cut -d / -f 3)
       - uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
