@@ -1,9 +1,9 @@
 package adapter
 
 /*
-#cgo CFLAGS: -I"${SRCDIR}/../ext/drafter/src/" -I"${SRCDIR}/../ext/drafter/ext/snowcrash/src/"
-#cgo darwin LDFLAGS: -L"${SRCDIR}/../ext/drafter/build/out/Release/" -ldrafter -lsnowcrash -lmarkdownparser -lsundown -lc++
-#cgo linux LDFLAGS: -L"${SRCDIR}/../ext/drafter/build/out/Release/" -ldrafter -lsnowcrash -lmarkdownparser -lsundown -lstdc++
+#cgo CFLAGS: -I"${SRCDIR}/ext/drafter/src/" -I"${SRCDIR}/ext/drafter/ext/snowcrash/src/"
+#cgo darwin LDFLAGS: -L"${SRCDIR}/ext/drafter/build/out/Release/" -ldrafter -lsnowcrash -lmarkdownparser -lsundown -lc++
+#cgo linux LDFLAGS: -L"${SRCDIR}/ext/drafter/build/out/Release/" -ldrafter -lsnowcrash -lmarkdownparser -lsundown -lstdc++
 #include <stdlib.h>
 #include <stdio.h>
 #include "drafter.h"

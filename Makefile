@@ -3,9 +3,9 @@
 submodules:
 	git submodule update --init --recursive
 drafter:
-	$(MAKE) -C ./ext/drafter drafter
+	$(MAKE) -C ./adapter/ext/drafter drafter
 clean:
-	$(MAKE) -C ./ext/drafter distclean
+	$(MAKE) -C ./adapter/ext/drafter distclean
 plugin:
 	go build -buildmode=plugin -o drafter.so ./plugin
 rpc-plugin:
