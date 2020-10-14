@@ -40,20 +40,25 @@ jobs:
       - id: get_upload_url
         run: echo ::set-output name=upload_url::$(cat release_url.txt)
       - id: get_version
-        run: echo ::set-output name=version::$(echo ${{ github.ref }} | cut -d / -f 3)
+        run: echo ::set-output name=version::$(echo ${{ github.ref }} | cut -d / -f 3 | tail -c +2)
+      - id: get_os_name
+        run: echo ::set-output name=os::$(echo ${{ runner.os }} | tr '[:upper:]' '[:lower:]')
+      - id: get_formatted_name
+        run: echo ::set-output name=name::$(echo ${{ steps.get_version.outputs.version }}-${{ steps.get_os_name.outputs.os }})
       - uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.get_upload_url.outputs.upload_url }}
           asset_path: ./drafter.so
-          asset_name: drafter-${{ steps.get_version.outputs.version }}-${{ runner.os }}.so
+          asset_name: drafter-${{ steps.get_formatted_name.outputs.name }}.so
           asset_content_type: application/octet-stream
+
       - uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.get_upload_url.outputs.upload_url }}
           asset_path: ./drafter-rpc
-          asset_name: drafter-rpc-${{ steps.get_version.outputs.version }}-${{ runner.os }}
+          asset_name: drafter-rpc-${{ steps.get_formatted_name.outputs.name }}
           asset_content_type: application/octet-stream
