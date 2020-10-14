@@ -36,6 +36,7 @@ jobs:
       - run: make submodules
       - run: make drafter
       - run: make plugin
+      - run: make rpc-plugin
       - id: get_upload_url
         run: echo ::set-output name=upload_url::$(cat release_url.txt)
       - id: get_version
@@ -47,4 +48,12 @@ jobs:
           upload_url: ${{ steps.get_upload_url.outputs.upload_url }}
           asset_path: ./drafter.so
           asset_name: drafter-${{ steps.get_version.outputs.version }}-${{ runner.os }}.so
+          asset_content_type: application/octet-stream
+      - uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.get_upload_url.outputs.upload_url }}
+          asset_path: ./drafter-rpc
+          asset_name: drafter-rpc-${{ steps.get_version.outputs.version }}-${{ runner.os }}
           asset_content_type: application/octet-stream
