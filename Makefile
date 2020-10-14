@@ -1,4 +1,4 @@
-.PHONY: plugin
+.PHONY: plugin rpc-plugin
 
 submodules:
 	git submodule update --init --recursive
