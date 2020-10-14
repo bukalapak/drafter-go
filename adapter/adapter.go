@@ -17,6 +17,8 @@ import (
 	"github.com/subosito/drafter-go"
 )
 
+const version string = "v5.0.0"
+
 func parseOptions(n drafter.Options) *C.drafter_parse_options {
 	options := C.drafter_init_parse_options()
 
@@ -92,7 +94,7 @@ func Check(r io.Reader, n drafter.Options) ([]byte, error) {
 }
 
 func Version() string {
-	return drafter.Version
+	return version
 }
 
 func serialize(r *C.drafter_result, n drafter.Options) []byte {

@@ -38,5 +38,5 @@ func TestDrafter_Check(t *testing.T) {
 
 func TestDrafter_Version(t *testing.T) {
 	c := qt.New(t)
-	c.Assert(adapter.Version(), qt.Equals, drafter.Version)
+	c.Assert(adapter.Version(), qt.Equals, "v5.0.0")
 }

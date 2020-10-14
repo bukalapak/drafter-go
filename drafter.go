@@ -11,8 +11,6 @@ type Drafter interface {
 	Version() string
 }
 
-const Version string = "v5.0.0"
-
 const (
 	YAML Format = iota
 	JSON
