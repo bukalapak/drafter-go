@@ -7,4 +7,6 @@ drafter:
 clean:
 	$(MAKE) -C ./ext/drafter distclean
 plugin:
-	go build -buildmode=plugin -o drafter.so ./plugin/drafter.go
+	go build -buildmode=plugin -o drafter.so ./plugin
+rpc-plugin:
+	go build -o drafter-rpc ./rpc-plugin
