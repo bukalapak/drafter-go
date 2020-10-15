@@ -3,6 +3,7 @@ package client
 import (
 	"os/exec"
 
+	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-plugin"
 	"github.com/subosito/drafter-go"
 	"github.com/subosito/drafter-go/rpc-plugin/rpc"
@@ -28,6 +29,7 @@ func New() DrafterRPC {
 		HandshakeConfig: rpc.HandshakeConfig,
 		Plugins:         pluginMap,
 		Cmd:             exec.Command(pluginName),
+		Logger:          hclog.NewNullLogger(),
 	}
 
 	return &engine{
