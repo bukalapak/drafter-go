@@ -1,6 +1,7 @@
 package rpc
 
 import (
+	"bytes"
 	"io"
 	"net/rpc"
 
@@ -22,27 +23,15 @@ func (c *Client) Version() string {
 }
 
 func (c *Client) Parse(r io.Reader, n drafter.Options) ([]byte, error) {
-	var resp string
-
-	b, err := readBytes(r)
-	if err != nil {
-		return nil, err
-	}
-
-	args := map[string]interface{}{
-		"input":   b,
-		"options": n,
-	}
-
-	if err = c.client.Call("Plugin.Parse", args, &resp); err != nil {
-		return nil, err
-	}
-
-	return []byte(resp), nil
+	return c.call("Plugin.Parse", r, n)
 }
 
 func (c *Client) Check(r io.Reader, n drafter.Options) ([]byte, error) {
-	var resp string
+	return c.call("Plugin.Check", r, n)
+}
+
+func (c *Client) call(method string, r io.Reader, n drafter.Options) ([]byte, error) {
+	var resp []byte
 
 	b, err := readBytes(r)
 	if err != nil {
@@ -54,9 +43,19 @@ func (c *Client) Check(r io.Reader, n drafter.Options) ([]byte, error) {
 		"options": n,
 	}
 
-	if err = c.client.Call("Plugin.Check", args, &resp); err != nil {
+	if err = c.client.Call(method, args, &resp); err != nil {
 		return nil, err
 	}
 
-	return []byte(resp), nil
+	return resp, nil
+}
+
+func readBytes(r io.Reader) ([]byte, error) {
+	buf := new(bytes.Buffer)
+
+	if _, err := io.Copy(buf, r); err != nil {
+		return nil, err
+	}
+
+	return buf.Bytes(), nil
 }
