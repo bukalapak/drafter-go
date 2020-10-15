@@ -42,7 +42,7 @@ jobs:
       - id: get_version
         run: echo ::set-output name=version::$(echo ${{ github.ref }} | cut -d / -f 3 | tail -c +2)
       - id: get_os_name
-        run: echo ::set-output name=os::$(echo ${{ runner.os }} | tr '[:upper:]' '[:lower:]')
+        run: echo ::set-output name=os::$(echo ${{ runner.os }} | sed 's/macOS/Darwin/' | tr '[:upper:]' '[:lower:]')
       - id: get_formatted_name
         run: echo ::set-output name=name::$(echo ${{ steps.get_version.outputs.version }}-${{ steps.get_os_name.outputs.os }})
       - uses: actions/upload-release-asset@v1
