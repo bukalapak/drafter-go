@@ -17,8 +17,8 @@ jobs:
       - uses: actions/checkout@v2
       - run: apk add --update build-base python2 git
       - run: printenv
-      - run: ls -lh
-      - run: ls -lh /github
+      - run: ls -la
+      - run: ls -la /github/home
       - run: make submodules
       - run: make drafter
       - run: go mod download
