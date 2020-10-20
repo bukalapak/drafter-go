@@ -71,7 +71,7 @@ jobs:
         with:
           name: release_url
           path: .
-      - run: apk add --update build-base python2
+      - run: apk add --update build-base python2 git
       - run: make submodules
       - run: make drafter
       - run: make plugin
