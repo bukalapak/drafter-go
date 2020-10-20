@@ -62,16 +62,17 @@ jobs:
           asset_name: drafter-rpc-${{ steps.get_formatted_name.outputs.name }}
           asset_content_type: application/octet-stream
   publish-musl:
+    name: publish (musl)
     runs-on: ubuntu-latest
     container:
       image: golang:1.15.2-alpine
     steps:
+      - run: apk add --update build-base python2 git
       - uses: actions/checkout@v2
       - uses: actions/download-artifact@v2
         with:
           name: release_url
           path: .
-      - run: apk add --update build-base python2 git
       - run: make submodules
       - run: make drafter
       - run: make plugin

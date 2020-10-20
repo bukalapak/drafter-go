@@ -21,3 +21,15 @@ jobs:
       - run: make drafter
       - run: go mod download
       - run: go test -v -race -cover ./...
+  test-musl:
+    name: test (alpine)
+    runs-on: ubuntu-latest
+    container:
+      image: golang:1.15.2-alpine
+    steps:
+      - run: apk add --update build-base python2 git
+      - uses: actions/checkout@v2
+      - run: make submodules
+      - run: make drafter
+      - run: go mod download
+      - run: go test -v -race -cover ./...
