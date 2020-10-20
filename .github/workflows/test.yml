@@ -4,19 +4,21 @@ on:
   push:
     branches:
       - master
+      - alpine
     tags-ignore:
       - '*'
 jobs:
-  test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest]
+  test-musl:
+    name: test (alpine)
+    runs-on: ubuntu-latest
+    container:
+      image: golang:1.15.2-alpine
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-go@v2
-        with:
-          go-version: '1.15.2'
+      - run: apk add --update build-base python2 git
+      - run: printenv
+      - run: ls -lh
+      - run: ls -lh /github
       - run: make submodules
       - run: make drafter
       - run: go mod download
