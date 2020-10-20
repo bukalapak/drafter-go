@@ -53,7 +53,43 @@ jobs:
           asset_path: ./drafter.so
           asset_name: drafter-${{ steps.get_formatted_name.outputs.name }}.so
           asset_content_type: application/octet-stream
-
+      - uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.get_upload_url.outputs.upload_url }}
+          asset_path: ./drafter-rpc
+          asset_name: drafter-rpc-${{ steps.get_formatted_name.outputs.name }}
+          asset_content_type: application/octet-stream
+  publish-musl:
+    runs-on: ubuntu-latest
+    container:
+      image: golang:1.15.2-alpine
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: release_url
+          path: .
+      - run: apk add --update build-base python2
+      - run: make submodules
+      - run: make drafter
+      - run: make plugin
+      - run: make rpc-plugin
+      - id: get_upload_url
+        run: echo ::set-output name=upload_url::$(cat release_url.txt)
+      - id: get_version
+        run: echo ::set-output name=version::$(echo ${{ github.ref }} | cut -d / -f 3 | tail -c +2)
+      - id: get_formatted_name
+        run: echo ::set-output name=name::$(echo ${{ steps.get_version.outputs.version }}-linux-musl)
+      - uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.get_upload_url.outputs.upload_url }}
+          asset_path: ./drafter.so
+          asset_name: drafter-${{ steps.get_formatted_name.outputs.name }}.so
+          asset_content_type: application/octet-stream
       - uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
