@@ -15,13 +15,13 @@ jobs:
       image: golang:1.15.2-alpine
     steps:
       - uses: actions/checkout@v2
+      - run: apk add --update build-base python2 git
       - run: |
           git clone https://github.com/apiaryio/drafter.git adapter/ext/drafter
           cd adapter/ext/drafter
           git checkout v5.0.0
           git submodule update --init --recursive
           cd -
-      - run: apk add --update build-base python2 git
       - run: printenv
       - run: ls -la
       - run: ls -la /github/home
