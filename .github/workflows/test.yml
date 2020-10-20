@@ -15,6 +15,8 @@ jobs:
       image: golang:1.15.2-alpine
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - run: apk add --update build-base python2 git
       - run: printenv
       - run: ls -la
