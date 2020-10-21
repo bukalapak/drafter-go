@@ -9,8 +9,6 @@ import (
 	"github.com/subosito/drafter-go/rpc-plugin/rpc"
 )
 
-const pluginName = "drafter-rpc"
-
 type DrafterRPC interface {
 	Dispense() (drafter.Drafter, error)
 	Close()
@@ -20,7 +18,28 @@ type engine struct {
 	client *plugin.Client
 }
 
-func New() DrafterRPC {
+type Config struct {
+	Name   string
+	Logger hclog.Logger
+}
+
+func (c Config) cmdName() string {
+	if c.Name == "" {
+		return "drafter-rpc"
+	}
+
+	return c.Name
+}
+
+func (c Config) logger() hclog.Logger {
+	if c.Logger == nil {
+		return hclog.NewNullLogger()
+	}
+
+	return c.Logger
+}
+
+func New(cfg Config) DrafterRPC {
 	pluginMap := map[string]plugin.Plugin{
 		"drafter": &rpc.Plugin{},
 	}
@@ -28,8 +47,8 @@ func New() DrafterRPC {
 	config := &plugin.ClientConfig{
 		HandshakeConfig: rpc.HandshakeConfig,
 		Plugins:         pluginMap,
-		Cmd:             exec.Command(pluginName),
-		Logger:          hclog.NewNullLogger(),
+		Cmd:             exec.Command(cfg.cmdName()),
+		Logger:          cfg.logger(),
 	}
 
 	return &engine{
