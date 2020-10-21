@@ -1,6 +1,6 @@
 # drafter-go
 
-API blueprint parser for Go. It's a Go bindings for the [https://github.com/apiaryio/drafter](Drafter) library.
+API blueprint parser for Go. It's a Go bindings for the [Drafter](https://github.com/apiaryio/drafter) library.
 
 
 ## Usage
@@ -12,7 +12,7 @@ This library can be consumed using two ways:
 
 ### RPC-based plugin
 
-RPC-based plugin is based on Hashicorp's [https://github.com/hashicorp/go-plugin](go-plugin).
+RPC-based plugin is based on Hashicorp's [go-plugin](https://github.com/hashicorp/go-plugin).
 
 1. Download file drafter-rpc-* from releases page
 2. Rename it as `drafter-rpc`
@@ -55,7 +55,7 @@ func main() {
 
 ### Go plugin
 
-To consume this library as [https://golang.org/pkg/plugin/](go plugin). You need to:
+To consume this library as [go plugin](https://golang.org/pkg/plugin/). You need to:
 
 1. Download file *.so from releases page
 2. Rename it as `drafter.so`
