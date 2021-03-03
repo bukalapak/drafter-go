@@ -5,8 +5,8 @@ import (
 	"testing"
 
 	qt "github.com/frankban/quicktest"
-	drafter "github.com/subosito/drafter-go"
-	"github.com/subosito/drafter-go/adapter"
+	drafter "github.com/bukalapak/drafter-go"
+	"github.com/bukalapak/drafter-go/adapter"
 )
 
 func TestDrafter_Parse(t *testing.T) {

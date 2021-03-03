@@ -14,7 +14,7 @@ import (
 	"strings"
 	"unsafe"
 
-	"github.com/subosito/drafter-go"
+	"github.com/bukalapak/drafter-go"
 )
 
 const version string = "v5.0.0"

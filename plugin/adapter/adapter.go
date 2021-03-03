@@ -3,8 +3,8 @@ package adapter
 import (
 	"io"
 
-	drafter "github.com/subosito/drafter-go"
-	"github.com/subosito/drafter-go/adapter"
+	drafter "github.com/bukalapak/drafter-go"
+	"github.com/bukalapak/drafter-go/adapter"
 )
 
 type Adapter struct{}

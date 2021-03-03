@@ -5,7 +5,7 @@ import (
 	"net/rpc"
 
 	"github.com/hashicorp/go-plugin"
-	"github.com/subosito/drafter-go"
+	"github.com/bukalapak/drafter-go"
 )
 
 func init() {
