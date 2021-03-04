@@ -5,8 +5,8 @@ import (
 
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-plugin"
-	"github.com/subosito/drafter-go"
-	"github.com/subosito/drafter-go/rpc-plugin/rpc"
+	"github.com/bukalapak/drafter-go"
+	"github.com/bukalapak/drafter-go/rpc-plugin/rpc"
 )
 
 type DrafterRPC interface {

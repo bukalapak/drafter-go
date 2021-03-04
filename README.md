@@ -29,8 +29,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/subosito/drafter-go"
-	rc "github.com/subosito/drafter-go/rpc-plugin/client"
+	"github.com/bukalapak/drafter-go"
+	rc "github.com/bukalapak/drafter-go/rpc-plugin/client"
 )
 
 func main() {
@@ -64,8 +64,8 @@ To consume this library as [go plugin](https://golang.org/pkg/plugin/). You need
     ```sh
     export WORKDIR=/home/runner/work/drafter-go
     mkdir -p $WORKDIR
-    git clone https://github.com/subosito/drafter-go.git $WORKDIR/drafter-go
-    echo "replace github.com/subosito/drafter-go => $WORKDIR/drafter-go" >> go.mod
+    git clone https://github.com/bukalapak/drafter-go.git $WORKDIR/drafter-go
+    echo "replace github.com/bukalapak/drafter-go => $WORKDIR/drafter-go" >> go.mod
     ```
 5. Run this file: `go run ./main.go`
 
@@ -78,8 +78,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/subosito/drafter-go"
-	rc "github.com/subosito/drafter-go/plugin/client"
+	"github.com/bukalapak/drafter-go"
+	rc "github.com/bukalapak/drafter-go/plugin/client"
 )
 
 func main() {

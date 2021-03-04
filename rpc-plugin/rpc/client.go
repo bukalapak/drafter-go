@@ -5,7 +5,7 @@ import (
 	"io"
 	"net/rpc"
 
-	"github.com/subosito/drafter-go"
+	"github.com/bukalapak/drafter-go"
 )
 
 type Client struct {

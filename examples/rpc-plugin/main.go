@@ -6,8 +6,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/subosito/drafter-go"
-	rc "github.com/subosito/drafter-go/rpc-plugin/client"
+	"github.com/bukalapak/drafter-go"
+	rc "github.com/bukalapak/drafter-go/rpc-plugin/client"
 )
 
 /**

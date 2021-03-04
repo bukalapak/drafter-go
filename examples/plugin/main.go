@@ -6,8 +6,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/subosito/drafter-go"
-	rc "github.com/subosito/drafter-go/plugin/client"
+	"github.com/bukalapak/drafter-go"
+	rc "github.com/bukalapak/drafter-go/plugin/client"
 )
 
 /**
@@ -19,8 +19,8 @@ Usage:
 4. Note: due to the go plugin limitation, there are additional steps to mimics plugin build environment:
     1. export WORKDIR=/home/runner/work/drafter-go
     2. mkdir -p $WORKDIR
-    3. git clone https://github.com/subosito/drafter-go.git $WORKDIR/drafter-go
-    4. echo "replace github.com/subosito/drafter-go => $WORKDIR/drafter-go" >> go.mod
+    3. git clone https://github.com/bukalapak/drafter-go.git $WORKDIR/drafter-go
+    4. echo "replace github.com/bukalapak/drafter-go => $WORKDIR/drafter-go" >> go.mod
 5. Run this file: `go run ./main.go`
 */
 func main() {

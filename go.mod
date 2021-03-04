@@ -1,4 +1,4 @@
-module github.com/subosito/drafter-go
+module github.com/bukalapak/drafter-go
 
 go 1.15
 

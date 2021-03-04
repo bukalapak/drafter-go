@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/hashicorp/go-plugin"
-	"github.com/subosito/drafter-go/plugin/adapter"
-	rc "github.com/subosito/drafter-go/rpc-plugin/rpc"
+	"github.com/bukalapak/drafter-go/plugin/adapter"
+	rc "github.com/bukalapak/drafter-go/rpc-plugin/rpc"
 )
 
 func main() {
